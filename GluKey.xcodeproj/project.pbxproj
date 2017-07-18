@@ -714,6 +714,7 @@
 				6762AE381F1EA7B2003106D5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		6762AE391F1EA7B2003106D5 /* Build configuration list for PBXNativeTarget "GluKeyTests" */ = {
 			isa = XCConfigurationList;
@@ -722,6 +723,7 @@
 				6762AE3B1F1EA7B2003106D5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		6762AE3C1F1EA7B2003106D5 /* Build configuration list for PBXNativeTarget "GluKeyUITests" */ = {
 			isa = XCConfigurationList;
@@ -730,6 +732,7 @@
 				6762AE3E1F1EA7B2003106D5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
