@@ -2,7 +2,7 @@
 //  AppDelegate.swift
 //  GluKey
 //
-//  Created by James Pierce on 7/18/17.
+//  Created by James Pierce on 5/26/17.
 //  Copyright © 2017 James Pierce. All rights reserved.
 //
 
