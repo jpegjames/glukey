@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="12121"/>
+        <capability name="box content view" minToolsVersion="7.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="GlucoseGraphController" customModule="GluKey" customModuleProvider="target">
+            <connections>
+                <outlet property="appMenuPopup" destination="4Sa-Bd-v0p" id="oTn-Xu-dRp"/>
+                <outlet property="cgmChart" destination="CFE-ix-7qf" id="clf-ug-iGJ"/>
+                <outlet property="glucoseTrend" destination="t0B-Zy-KPR" id="Tzf-UX-exm"/>
+                <outlet property="glucoseUnit" destination="o9q-Fp-cRQ" id="Gcg-ZE-VtR"/>
+                <outlet property="glucoseValue" destination="38s-qx-4Il" id="p8z-eT-BVV"/>
+                <outlet property="timePopup" destination="jr5-WL-2Dz" id="T1q-6W-cnd"/>
+                <outlet property="updateValue" destination="9kg-Wt-2tZ" id="luA-fV-b2C"/>
+                <outlet property="updatedAtLabel" destination="9kg-Wt-2tZ" id="yuw-7k-tQf"/>
+                <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <customView id="Hz6-mo-xeY">
+            <rect key="frame" x="0.0" y="0.0" width="480" height="309"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="38s-qx-4Il" userLabel="glucoseValue">
+                    <rect key="frame" x="65" y="235" width="78" height="54"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="---" id="fAH-xt-BWz" userLabel="glucoseValue">
+                        <font key="font" size="45" name="HelveticaNeue"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CFE-ix-7qf" customClass="LineChartView" customModule="Charts">
+                    <rect key="frame" x="20" y="59" width="440" height="161"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                </customView>
+                <popUpButton fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jr5-WL-2Dz">
+                    <rect key="frame" x="359" y="236" width="103" height="27"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <popUpButtonCell key="cell" type="check" title="3 Hours" bezelStyle="regularSquare" imagePosition="left" lineBreakMode="truncatingTail" state="on" inset="2" selectedItem="Z7z-ae-Mvq" id="Jhd-PW-gVN">
+                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                        <font key="font" metaFont="menu"/>
+                        <menu key="menu" id="6Fd-YO-SJx">
+                            <items>
+                                <menuItem title="1 Hour" keyEquivalent="1" id="god-JS-OkE"/>
+                                <menuItem title="3 Hours" state="on" keyEquivalent="2" id="Z7z-ae-Mvq"/>
+                                <menuItem title="6 Hours" keyEquivalent="3" id="CLv-lt-5p3"/>
+                                <menuItem title="12 Hours" keyEquivalent="4" id="qbk-bH-AdV"/>
+                                <menuItem title="24 Hours" keyEquivalent="5" id="xlI-ZS-A6T"/>
+                            </items>
+                        </menu>
+                    </popUpButtonCell>
+                    <connections>
+                        <action selector="zoomPopupHandler:" target="-2" id="5Ox-mG-fQn"/>
+                    </connections>
+                </popUpButton>
+                <box verticalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="ULv-L8-Nhu">
+                    <rect key="frame" x="20" y="233" width="440" height="5"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                </box>
+                <box fixedFrame="YES" boxType="custom" cornerRadius="4" title="Box" translatesAutoresizingMaskIntoConstraints="NO" id="izn-2y-Hbj">
+                    <rect key="frame" x="-28" y="0.0" width="538" height="42"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <view key="contentView" ambiguous="YES" id="664-tp-7D5">
+                        <rect key="frame" x="1" y="1" width="536" height="40"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9kg-Wt-2tZ" userLabel="timestamp box">
+                                <rect key="frame" x="189" y="9" width="158" height="19"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="updated 13 minutes ago" id="05K-Pn-4j3" userLabel="glucoseValue">
+                                    <font key="font" size="11" name="HelveticaNeue"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <popUpButton fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4Sa-Bd-v0p">
+                                <rect key="frame" x="461" y="9" width="24" height="23"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <popUpButtonCell key="cell" type="bevel" bezelStyle="regularSquare" imagePosition="left" lineBreakMode="truncatingTail" borderStyle="bezel" inset="2" pullsDown="YES" arrowPosition="arrowAtCenter" autoenablesItems="NO" id="33q-cc-cP6">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="menu"/>
+                                    <menu key="menu" autoenablesItems="NO" id="K2F-L1-5bQ">
+                                        <items>
+                                            <menuItem hidden="YES" id="MYA-4y-Nom"/>
+                                            <menuItem title="Settings…" keyEquivalent="," id="a2L-MO-g5O"/>
+                                            <menuItem title="Help" hidden="YES" id="Jzn-AE-eBD">
+                                                <modifierMask key="keyEquivalentModifierMask"/>
+                                            </menuItem>
+                                            <menuItem isSeparatorItem="YES" id="gnR-ux-zNQ"/>
+                                            <menuItem title="Quit" keyEquivalent="q" id="Rae-du-QG6"/>
+                                        </items>
+                                    </menu>
+                                </popUpButtonCell>
+                                <connections>
+                                    <action selector="appMenuHandler:" target="-2" id="jF3-ST-K3a"/>
+                                </connections>
+                            </popUpButton>
+                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gRQ-83-Ww8">
+                                <rect key="frame" x="47" y="10" width="96" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageAlignment="left" imageScaling="proportionallyDown" image="logo-popover" id="kfa-N9-3Td"/>
+                            </imageView>
+                        </subviews>
+                    </view>
+                    <color key="fillColor" red="0.22362775259067358" green="0.22362775259067358" blue="0.22362775259067358" alpha="0.091576804604225334" colorSpace="custom" customColorSpace="sRGB"/>
+                </box>
+                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="t0B-Zy-KPR">
+                    <rect key="frame" x="20" y="238" width="39" height="39"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="JLb-L5-PEl"/>
+                </imageView>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="o9q-Fp-cRQ" userLabel="glucoseUnit">
+                    <rect key="frame" x="149" y="242" width="75" height="19"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="mg/dl" id="UCC-aj-LfP" userLabel="glucoseUnit">
+                        <font key="font" size="13" name="HelveticaNeue"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+            </subviews>
+            <point key="canvasLocation" x="139" y="187.5"/>
+        </customView>
+        <imageCell controlSize="small" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="VYx-3H-3zu"/>
+    </objects>
+    <resources>
+        <image name="logo-popover" width="179" height="48"/>
+    </resources>
+</document>
