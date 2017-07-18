@@ -1,0 +1,521 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		6762AE151F1EA7B2003106D5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6762AE141F1EA7B2003106D5 /* AppDelegate.swift */; };
+		6762AE171F1EA7B2003106D5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6762AE161F1EA7B2003106D5 /* ViewController.swift */; };
+		6762AE191F1EA7B2003106D5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6762AE181F1EA7B2003106D5 /* Assets.xcassets */; };
+		6762AE1C1F1EA7B2003106D5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6762AE1A1F1EA7B2003106D5 /* Main.storyboard */; };
+		6762AE271F1EA7B2003106D5 /* GluKeyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6762AE261F1EA7B2003106D5 /* GluKeyTests.swift */; };
+		6762AE321F1EA7B2003106D5 /* GluKeyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6762AE311F1EA7B2003106D5 /* GluKeyUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		6762AE231F1EA7B2003106D5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6762AE091F1EA7B2003106D5 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6762AE101F1EA7B2003106D5;
+			remoteInfo = GluKey;
+		};
+		6762AE2E1F1EA7B2003106D5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6762AE091F1EA7B2003106D5 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6762AE101F1EA7B2003106D5;
+			remoteInfo = GluKey;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		6762AE111F1EA7B2003106D5 /* GluKey.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GluKey.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		6762AE141F1EA7B2003106D5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		6762AE161F1EA7B2003106D5 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		6762AE181F1EA7B2003106D5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		6762AE1B1F1EA7B2003106D5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		6762AE1D1F1EA7B2003106D5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6762AE221F1EA7B2003106D5 /* GluKeyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GluKeyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		6762AE261F1EA7B2003106D5 /* GluKeyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GluKeyTests.swift; sourceTree = "<group>"; };
+		6762AE281F1EA7B2003106D5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6762AE2D1F1EA7B2003106D5 /* GluKeyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GluKeyUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		6762AE311F1EA7B2003106D5 /* GluKeyUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GluKeyUITests.swift; sourceTree = "<group>"; };
+		6762AE331F1EA7B2003106D5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		6762AE0E1F1EA7B2003106D5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6762AE1F1F1EA7B2003106D5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6762AE2A1F1EA7B2003106D5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		6762AE081F1EA7B2003106D5 = {
+			isa = PBXGroup;
+			children = (
+				6762AE131F1EA7B2003106D5 /* GluKey */,
+				6762AE251F1EA7B2003106D5 /* GluKeyTests */,
+				6762AE301F1EA7B2003106D5 /* GluKeyUITests */,
+				6762AE121F1EA7B2003106D5 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		6762AE121F1EA7B2003106D5 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				6762AE111F1EA7B2003106D5 /* GluKey.app */,
+				6762AE221F1EA7B2003106D5 /* GluKeyTests.xctest */,
+				6762AE2D1F1EA7B2003106D5 /* GluKeyUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		6762AE131F1EA7B2003106D5 /* GluKey */ = {
+			isa = PBXGroup;
+			children = (
+				6762AE141F1EA7B2003106D5 /* AppDelegate.swift */,
+				6762AE161F1EA7B2003106D5 /* ViewController.swift */,
+				6762AE181F1EA7B2003106D5 /* Assets.xcassets */,
+				6762AE1A1F1EA7B2003106D5 /* Main.storyboard */,
+				6762AE1D1F1EA7B2003106D5 /* Info.plist */,
+			);
+			path = GluKey;
+			sourceTree = "<group>";
+		};
+		6762AE251F1EA7B2003106D5 /* GluKeyTests */ = {
+			isa = PBXGroup;
+			children = (
+				6762AE261F1EA7B2003106D5 /* GluKeyTests.swift */,
+				6762AE281F1EA7B2003106D5 /* Info.plist */,
+			);
+			path = GluKeyTests;
+			sourceTree = "<group>";
+		};
+		6762AE301F1EA7B2003106D5 /* GluKeyUITests */ = {
+			isa = PBXGroup;
+			children = (
+				6762AE311F1EA7B2003106D5 /* GluKeyUITests.swift */,
+				6762AE331F1EA7B2003106D5 /* Info.plist */,
+			);
+			path = GluKeyUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		6762AE101F1EA7B2003106D5 /* GluKey */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6762AE361F1EA7B2003106D5 /* Build configuration list for PBXNativeTarget "GluKey" */;
+			buildPhases = (
+				6762AE0D1F1EA7B2003106D5 /* Sources */,
+				6762AE0E1F1EA7B2003106D5 /* Frameworks */,
+				6762AE0F1F1EA7B2003106D5 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = GluKey;
+			productName = GluKey;
+			productReference = 6762AE111F1EA7B2003106D5 /* GluKey.app */;
+			productType = "com.apple.product-type.application";
+		};
+		6762AE211F1EA7B2003106D5 /* GluKeyTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6762AE391F1EA7B2003106D5 /* Build configuration list for PBXNativeTarget "GluKeyTests" */;
+			buildPhases = (
+				6762AE1E1F1EA7B2003106D5 /* Sources */,
+				6762AE1F1F1EA7B2003106D5 /* Frameworks */,
+				6762AE201F1EA7B2003106D5 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				6762AE241F1EA7B2003106D5 /* PBXTargetDependency */,
+			);
+			name = GluKeyTests;
+			productName = GluKeyTests;
+			productReference = 6762AE221F1EA7B2003106D5 /* GluKeyTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		6762AE2C1F1EA7B2003106D5 /* GluKeyUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6762AE3C1F1EA7B2003106D5 /* Build configuration list for PBXNativeTarget "GluKeyUITests" */;
+			buildPhases = (
+				6762AE291F1EA7B2003106D5 /* Sources */,
+				6762AE2A1F1EA7B2003106D5 /* Frameworks */,
+				6762AE2B1F1EA7B2003106D5 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				6762AE2F1F1EA7B2003106D5 /* PBXTargetDependency */,
+			);
+			name = GluKeyUITests;
+			productName = GluKeyUITests;
+			productReference = 6762AE2D1F1EA7B2003106D5 /* GluKeyUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		6762AE091F1EA7B2003106D5 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0830;
+				LastUpgradeCheck = 0830;
+				ORGANIZATIONNAME = "James Pierce";
+				TargetAttributes = {
+					6762AE101F1EA7B2003106D5 = {
+						CreatedOnToolsVersion = 8.3.3;
+						ProvisioningStyle = Automatic;
+					};
+					6762AE211F1EA7B2003106D5 = {
+						CreatedOnToolsVersion = 8.3.3;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 6762AE101F1EA7B2003106D5;
+					};
+					6762AE2C1F1EA7B2003106D5 = {
+						CreatedOnToolsVersion = 8.3.3;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 6762AE101F1EA7B2003106D5;
+					};
+				};
+			};
+			buildConfigurationList = 6762AE0C1F1EA7B2003106D5 /* Build configuration list for PBXProject "GluKey" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 6762AE081F1EA7B2003106D5;
+			productRefGroup = 6762AE121F1EA7B2003106D5 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				6762AE101F1EA7B2003106D5 /* GluKey */,
+				6762AE211F1EA7B2003106D5 /* GluKeyTests */,
+				6762AE2C1F1EA7B2003106D5 /* GluKeyUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		6762AE0F1F1EA7B2003106D5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6762AE191F1EA7B2003106D5 /* Assets.xcassets in Resources */,
+				6762AE1C1F1EA7B2003106D5 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6762AE201F1EA7B2003106D5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6762AE2B1F1EA7B2003106D5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		6762AE0D1F1EA7B2003106D5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6762AE171F1EA7B2003106D5 /* ViewController.swift in Sources */,
+				6762AE151F1EA7B2003106D5 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6762AE1E1F1EA7B2003106D5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6762AE271F1EA7B2003106D5 /* GluKeyTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6762AE291F1EA7B2003106D5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6762AE321F1EA7B2003106D5 /* GluKeyUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		6762AE241F1EA7B2003106D5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6762AE101F1EA7B2003106D5 /* GluKey */;
+			targetProxy = 6762AE231F1EA7B2003106D5 /* PBXContainerItemProxy */;
+		};
+		6762AE2F1F1EA7B2003106D5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6762AE101F1EA7B2003106D5 /* GluKey */;
+			targetProxy = 6762AE2E1F1EA7B2003106D5 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		6762AE1A1F1EA7B2003106D5 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6762AE1B1F1EA7B2003106D5 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		6762AE341F1EA7B2003106D5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		6762AE351F1EA7B2003106D5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+			};
+			name = Release;
+		};
+		6762AE371F1EA7B2003106D5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = GluKey/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = is.james.GluKey;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		6762AE381F1EA7B2003106D5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = GluKey/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = is.james.GluKey;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		6762AE3A1F1EA7B2003106D5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = GluKeyTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = is.james.GluKeyTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GluKey.app/Contents/MacOS/GluKey";
+			};
+			name = Debug;
+		};
+		6762AE3B1F1EA7B2003106D5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = GluKeyTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = is.james.GluKeyTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GluKey.app/Contents/MacOS/GluKey";
+			};
+			name = Release;
+		};
+		6762AE3D1F1EA7B2003106D5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = GluKeyUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = is.james.GluKeyUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = GluKey;
+			};
+			name = Debug;
+		};
+		6762AE3E1F1EA7B2003106D5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = GluKeyUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = is.james.GluKeyUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = GluKey;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		6762AE0C1F1EA7B2003106D5 /* Build configuration list for PBXProject "GluKey" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6762AE341F1EA7B2003106D5 /* Debug */,
+				6762AE351F1EA7B2003106D5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6762AE361F1EA7B2003106D5 /* Build configuration list for PBXNativeTarget "GluKey" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6762AE371F1EA7B2003106D5 /* Debug */,
+				6762AE381F1EA7B2003106D5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		6762AE391F1EA7B2003106D5 /* Build configuration list for PBXNativeTarget "GluKeyTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6762AE3A1F1EA7B2003106D5 /* Debug */,
+				6762AE3B1F1EA7B2003106D5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		6762AE3C1F1EA7B2003106D5 /* Build configuration list for PBXNativeTarget "GluKeyUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6762AE3D1F1EA7B2003106D5 /* Debug */,
+				6762AE3E1F1EA7B2003106D5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 6762AE091F1EA7B2003106D5 /* Project object */;
+}
