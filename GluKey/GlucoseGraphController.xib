@@ -79,15 +79,20 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <popUpButton fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4Sa-Bd-v0p">
-                                <rect key="frame" x="461" y="9" width="24" height="23"/>
+                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gRQ-83-Ww8">
+                                <rect key="frame" x="47" y="10" width="96" height="20"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <popUpButtonCell key="cell" type="bevel" bezelStyle="regularSquare" imagePosition="left" lineBreakMode="truncatingTail" borderStyle="bezel" inset="2" pullsDown="YES" arrowPosition="arrowAtCenter" autoenablesItems="NO" id="33q-cc-cP6">
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageAlignment="left" imageScaling="proportionallyDown" image="logo-popover" id="kfa-N9-3Td"/>
+                            </imageView>
+                            <popUpButton fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4Sa-Bd-v0p">
+                                <rect key="frame" x="433" y="-1" width="58" height="42"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <popUpButtonCell key="cell" type="radio" bezelStyle="regularSquare" imagePosition="left" lineBreakMode="truncatingTail" inset="2" pullsDown="YES" arrowPosition="noArrow" autoenablesItems="NO" id="33q-cc-cP6">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                    <font key="font" metaFont="menu"/>
+                                    <font key="font" metaFont="system"/>
                                     <menu key="menu" autoenablesItems="NO" id="K2F-L1-5bQ">
                                         <items>
-                                            <menuItem hidden="YES" id="MYA-4y-Nom"/>
+                                            <menuItem image="settings-icon" hidden="YES" id="MYA-4y-Nom"/>
                                             <menuItem title="Settings…" keyEquivalent="," id="a2L-MO-g5O"/>
                                             <menuItem title="Help" hidden="YES" id="Jzn-AE-eBD">
                                                 <modifierMask key="keyEquivalentModifierMask"/>
@@ -101,11 +106,6 @@
                                     <action selector="appMenuHandler:" target="-2" id="jF3-ST-K3a"/>
                                 </connections>
                             </popUpButton>
-                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gRQ-83-Ww8">
-                                <rect key="frame" x="47" y="10" width="96" height="20"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageAlignment="left" imageScaling="proportionallyDown" image="logo-popover" id="kfa-N9-3Td"/>
-                            </imageView>
                         </subviews>
                     </view>
                     <color key="fillColor" red="0.22362775259067358" green="0.22362775259067358" blue="0.22362775259067358" alpha="0.091576804604225334" colorSpace="custom" customColorSpace="sRGB"/>
@@ -130,6 +130,7 @@
         <imageCell controlSize="small" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="VYx-3H-3zu"/>
     </objects>
     <resources>
-        <image name="logo-popover" width="179" height="48"/>
+        <image name="logo-popover" width="179" height="49"/>
+        <image name="settings-icon" width="43" height="40"/>
     </resources>
 </document>
