@@ -25,6 +25,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
+        NSWorkspace.shared().notificationCenter.addObserver(self, selector: "wakeUpListener", name: NSNotification.Name.NSWorkspaceDidWake, object: nil)
+        
         // -----------------------------
         // Register UserDefaults
         // -----------------------------
@@ -98,6 +100,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     // Insert code here to tear down application
     }
     
+    
+    func wakeUpListener() {
+        print("Wake Up Listening")
+        updateMenuBarValue()
+        loadGlucoseData()
+    }
     
     // -----------------------------
     // Timer Functions
