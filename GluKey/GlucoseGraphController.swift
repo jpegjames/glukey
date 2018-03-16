@@ -19,6 +19,7 @@ class GlucoseGraphController: NSViewController {
     @IBOutlet weak var glucoseUnit:     NSTextField!
     @IBOutlet weak var timePopup:       NSPopUpButton!
     @IBOutlet weak var updatedAtLabel:  NSTextField!
+    @IBOutlet weak var popoverLogo:     NSImageView!
     
     // Settings Storyboard View/Controller
     //
@@ -64,6 +65,16 @@ class GlucoseGraphController: NSViewController {
         // Set updated at value
         //
         setLastUpdateValue()
+        
+        
+        // Set correct logo version for UI style
+        //
+        if UIHelper.isDarkUI() {
+            self.popoverLogo.image = NSImage(named: "logo-popover-inverted")
+        } else {
+            self.popoverLogo.image = NSImage(named: "logo-popover")
+        }
+        
         
     }
     
@@ -112,7 +123,12 @@ class GlucoseGraphController: NSViewController {
                 glucoseValue.stringValue = String(format:"%.f", GlucoseHelper.currentGulcoseReading()["Value"] as! Double)
             }
             
-            self.glucoseTrend.image = NSImage(named: "popupIcon-\(GlucoseHelper.currentGulcoseReading()["Trend"]!)")
+            if UIHelper.isDarkUI() {
+                self.glucoseTrend.image = NSImage(named: "popupIconWh-\(GlucoseHelper.currentGulcoseReading()["Trend"]!)")
+            } else {
+                self.glucoseTrend.image = NSImage(named: "popupIcon-\(GlucoseHelper.currentGulcoseReading()["Trend"]!)")
+            }
+            
         } else {
             glucoseValue.stringValue = "---"
             self.glucoseTrend.image = nil // possibly change to question mark?
@@ -143,7 +159,7 @@ class GlucoseGraphController: NSViewController {
         let warningColor        = NSUIColor.red
         let cautionColor        = NSUIColor.orange
         let safeColor           = NSUIColor(red: 0.051, green: 0.6275, blue: 0, alpha: 1.0)
-        let endGradientColor    = NSUIColor(red: 0.051, green: 0.6275, blue: 0, alpha: 0) // or NSUIColor.clear
+        let endGradientColor    = NSUIColor(red: 0.051, green: 0.6275, blue: 0, alpha: 0.0) // or NSUIColor.clear
         
         
         // Chart settings
@@ -232,6 +248,13 @@ class GlucoseGraphController: NSViewController {
         cgmDataSet.circleRadius         = 2
         cgmDataSet.circleHoleRadius     = 1
         cgmDataSet.drawValuesEnabled    = false // turns off datapoint labels (possibly enable for 2 hours or less)
+        
+        // if dark UI
+        if UIHelper.isDarkUI() {
+            cgmDataSet.setColor(NSUIColor.white)
+            cgmDataSet.colors               = [NSUIColor.white]
+            cgmDataSet.circleColors         = [NSUIColor.white]
+        }
 
         
         // Draw gradient
@@ -289,7 +312,11 @@ class GlucoseGraphController: NSViewController {
         // Set string color
         //
         if GlucoseHelper.validGuloseReading() {
-            updatedAtLabel.textColor = NSUIColor.black
+            if UIHelper.isDarkUI() {
+                updatedAtLabel.textColor = NSUIColor.white
+            } else {
+                updatedAtLabel.textColor = NSUIColor.black
+            }
         } else {
             updatedAtLabel.textColor = NSUIColor.red
         }

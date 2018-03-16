@@ -54,7 +54,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         // StatusItem icon
         //
         let iconBase = NSImage(named: Constants.statusIconBase)
-        iconBase?.isTemplate = false
+        iconBase?.isTemplate = false // true should allow the arrow to invert but does not but it negatively affects the Glukey icon
         statusItem.image = iconBase
         
         

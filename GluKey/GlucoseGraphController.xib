@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="13771" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="12121"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13771"/>
         <capability name="box content view" minToolsVersion="7.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -14,6 +14,7 @@
                 <outlet property="glucoseTrend" destination="t0B-Zy-KPR" id="Tzf-UX-exm"/>
                 <outlet property="glucoseUnit" destination="o9q-Fp-cRQ" id="Gcg-ZE-VtR"/>
                 <outlet property="glucoseValue" destination="38s-qx-4Il" id="p8z-eT-BVV"/>
+                <outlet property="popoverLogo" destination="gRQ-83-Ww8" id="Rpg-Ya-ZhZ"/>
                 <outlet property="timePopup" destination="jr5-WL-2Dz" id="T1q-6W-cnd"/>
                 <outlet property="updateValue" destination="9kg-Wt-2tZ" id="luA-fV-b2C"/>
                 <outlet property="updatedAtLabel" destination="9kg-Wt-2tZ" id="yuw-7k-tQf"/>
@@ -82,14 +83,14 @@
                             <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gRQ-83-Ww8">
                                 <rect key="frame" x="47" y="10" width="96" height="20"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageAlignment="left" imageScaling="proportionallyDown" image="logo-popover" id="kfa-N9-3Td"/>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageAlignment="left" imageScaling="proportionallyDown" image="logo-popover-inverted" id="kfa-N9-3Td"/>
                             </imageView>
                             <popUpButton fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4Sa-Bd-v0p">
-                                <rect key="frame" x="433" y="-1" width="58" height="42"/>
+                                <rect key="frame" x="444" y="-1" width="65" height="42"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <popUpButtonCell key="cell" type="radio" bezelStyle="regularSquare" imagePosition="left" lineBreakMode="truncatingTail" inset="2" pullsDown="YES" arrowPosition="noArrow" autoenablesItems="NO" id="33q-cc-cP6">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                    <font key="font" metaFont="system"/>
+                                    <font key="font" metaFont="menu"/>
                                     <menu key="menu" autoenablesItems="NO" id="K2F-L1-5bQ">
                                         <items>
                                             <menuItem image="settings-icon" hidden="YES" id="MYA-4y-Nom"/>
@@ -130,7 +131,7 @@
         <imageCell controlSize="small" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="VYx-3H-3zu"/>
     </objects>
     <resources>
-        <image name="logo-popover" width="179" height="49"/>
+        <image name="logo-popover-inverted" width="179" height="48"/>
         <image name="settings-icon" width="43" height="40"/>
     </resources>
 </document>
