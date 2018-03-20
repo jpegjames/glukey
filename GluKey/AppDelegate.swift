@@ -25,7 +25,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        NSWorkspace.shared().notificationCenter.addObserver(self, selector: "wakeUpListener", name: NSNotification.Name.NSWorkspaceDidWake, object: nil)
+        NSWorkspace.shared().notificationCenter.addObserver(self, selector: #selector(AppDelegate.wakeUpListener), name: NSNotification.Name.NSWorkspaceDidWake, object: nil)
         
         // -----------------------------
         // Register UserDefaults
