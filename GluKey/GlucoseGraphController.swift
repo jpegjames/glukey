@@ -177,6 +177,15 @@ class GlucoseGraphController: NSViewController {
         cgmChart.scaleYEnabled          = false // prevent zooming in the Y direction
         cgmChart.autoScaleMinMaxEnabled = false // would prefer that it auto scales but has min range between min and max values
         
+        if UIHelper.isDarkUI() {
+            cgmChart.rightAxis.labelTextColor = NSUIColor.white
+            cgmChart.xAxis.labelTextColor     = NSUIColor.white
+        } else {
+            cgmChart.rightAxis.labelTextColor = NSUIColor.black
+            cgmChart.xAxis.labelTextColor     = NSUIColor.black
+        }
+        
+        
         // Define Y Axis height
         if UserDefaults.standard.bool(forKey: "useMmol") {
             cgmChart.rightAxis.axisMinimum = 0
