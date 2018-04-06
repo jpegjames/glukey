@@ -131,7 +131,7 @@
         <imageCell controlSize="small" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="VYx-3H-3zu"/>
     </objects>
     <resources>
-        <image name="logo-popover-inverted" width="179" height="49"/>
+        <image name="logo-popover-inverted" width="179" height="48"/>
         <image name="settings-icon" width="43" height="40"/>
     </resources>
 </document>
