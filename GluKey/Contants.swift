@@ -14,9 +14,9 @@ struct Constants {
     // "Global" vars
     //
     static var popover                 = NSPopover()
-    static var sessionID:      String  = ""
     static var glucoseData:    Array   = [[String: Any]]()
     static let statusIconBase: String  = "statusIcon-"
+    static var errorMessage:   String  = ""
     
     
     // Notification vars

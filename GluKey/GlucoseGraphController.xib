@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14109" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14113" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14109"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14113"/>
         <capability name="box content view" minToolsVersion="7.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -11,12 +11,14 @@
             <connections>
                 <outlet property="appMenuPopup" destination="4Sa-Bd-v0p" id="oTn-Xu-dRp"/>
                 <outlet property="cgmChart" destination="CFE-ix-7qf" id="clf-ug-iGJ"/>
+                <outlet property="errorBox" destination="npH-6l-m5P" id="VvN-zn-Ga7"/>
+                <outlet property="errorBoxText" destination="bbI-Le-yth" id="cr1-bj-4j8"/>
+                <outlet property="errorLinkBox" destination="Gpc-9O-D7D" id="MCr-ZT-pwe"/>
                 <outlet property="glucoseTrend" destination="t0B-Zy-KPR" id="Tzf-UX-exm"/>
                 <outlet property="glucoseUnit" destination="o9q-Fp-cRQ" id="Gcg-ZE-VtR"/>
                 <outlet property="glucoseValue" destination="38s-qx-4Il" id="p8z-eT-BVV"/>
                 <outlet property="popoverLogo" destination="gRQ-83-Ww8" id="Rpg-Ya-ZhZ"/>
                 <outlet property="timePopup" destination="jr5-WL-2Dz" id="T1q-6W-cnd"/>
-                <outlet property="updateValue" destination="9kg-Wt-2tZ" id="luA-fV-b2C"/>
                 <outlet property="updatedAtLabel" destination="9kg-Wt-2tZ" id="yuw-7k-tQf"/>
                 <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
             </connections>
@@ -110,12 +112,8 @@
                         </subviews>
                     </view>
                     <color key="fillColor" red="0.22362775259067358" green="0.22362775259067358" blue="0.22362775259067358" alpha="0.091576804604225334" colorSpace="custom" customColorSpace="sRGB"/>
+                    <font key="titleFont" metaFont="message" size="11"/>
                 </box>
-                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="t0B-Zy-KPR">
-                    <rect key="frame" x="20" y="238" width="39" height="39"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="JLb-L5-PEl"/>
-                </imageView>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="o9q-Fp-cRQ" userLabel="glucoseUnit">
                     <rect key="frame" x="149" y="242" width="75" height="19"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -125,13 +123,105 @@
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
+                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="t0B-Zy-KPR">
+                    <rect key="frame" x="20" y="238" width="39" height="39"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="JLb-L5-PEl"/>
+                </imageView>
+                <box focusRingType="none" fixedFrame="YES" boxType="custom" borderWidth="0.0" cornerRadius="4" title="Box" translatesAutoresizingMaskIntoConstraints="NO" id="npH-6l-m5P" userLabel="error box">
+                    <rect key="frame" x="14" y="73" width="453" height="154"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <view key="contentView" ambiguous="YES" id="r1k-Aw-AZh">
+                        <rect key="frame" x="0.0" y="0.0" width="453" height="154"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bbI-Le-yth" userLabel="error text">
+                                <rect key="frame" x="171" y="76" width="258" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <textFieldCell key="cell" controlSize="mini" allowsUndo="NO" sendsActionOnEndEditing="YES" title="Could not login. Please check your username and password." id="tXz-0l-cEd">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RHi-8w-4jU" userLabel="error icon">
+                                <rect key="frame" x="31" y="32" width="115" height="102"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="error" id="hRE-Sv-MLm"/>
+                            </imageView>
+                            <box focusRingType="none" fixedFrame="YES" boxType="custom" borderWidth="0.0" cornerRadius="4" title="Box" translatesAutoresizingMaskIntoConstraints="NO" id="Gpc-9O-D7D" userLabel="Links box">
+                                <rect key="frame" x="166" y="32" width="195" height="28"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <view key="contentView" ambiguous="YES" id="S5G-da-19C">
+                                    <rect key="frame" x="0.0" y="0.0" width="195" height="28"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="szA-3E-3o9">
+                                            <rect key="frame" x="6" y="11" width="55" height="17"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Settings" id="hfb-Rz-hTk">
+                                                <font key="font" metaFont="system"/>
+                                                <color key="textColor" red="0.0" green="0.41960784309999999" blue="0.80392156859999997" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                        </textField>
+                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UO4-Em-8lZ">
+                                            <rect key="frame" x="69" y="11" width="9" height="17"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="|" id="Noz-BC-oC6">
+                                                <font key="font" metaFont="system"/>
+                                                <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                        </textField>
+                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ARm-WV-wtc">
+                                            <rect key="frame" x="89" y="11" width="90" height="17"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Setup Guide…" id="HfU-Up-Uen">
+                                                <font key="font" metaFont="system"/>
+                                                <color key="textColor" red="0.0" green="0.41960784309999999" blue="0.80392156859999997" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                        </textField>
+                                        <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GLn-gC-pW4" userLabel="Setting Overlay Button">
+                                            <rect key="frame" x="0.0" y="9" width="71" height="17"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <buttonCell key="cell" type="roundRect" title="Settings" alternateTitle="Open settings panel" bezelStyle="roundedRect" alignment="center" state="on" transparent="YES" imageScaling="proportionallyDown" inset="2" id="H4N-Yp-BbK">
+                                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                <font key="font" metaFont="cellTitle"/>
+                                            </buttonCell>
+                                            <connections>
+                                                <action selector="errorBoxSettingsHandler:" target="-2" id="swh-7F-B1P"/>
+                                            </connections>
+                                        </button>
+                                        <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7in-Uj-5QW" userLabel="Setup Guide Overlay Button">
+                                            <rect key="frame" x="85" y="9" width="100" height="17"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <buttonCell key="cell" type="roundRect" title="Setup Guide" alternateTitle="View setup guide online" bezelStyle="roundedRect" alignment="center" state="on" transparent="YES" imageScaling="proportionallyDown" inset="2" id="Ug2-5j-LjM">
+                                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                <font key="font" metaFont="cellTitle"/>
+                                            </buttonCell>
+                                            <connections>
+                                                <action selector="errorBoxSetupGuideHandler:" target="-2" id="CN0-dK-6AP"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                </view>
+                                <color key="fillColor" white="1" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </box>
+                        </subviews>
+                    </view>
+                    <color key="fillColor" white="1" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <font key="titleFont" metaFont="message" size="11"/>
+                </box>
             </subviews>
             <point key="canvasLocation" x="139" y="187.5"/>
         </customView>
         <imageCell controlSize="small" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="VYx-3H-3zu"/>
     </objects>
     <resources>
-        <image name="logo-popover-inverted" width="179" height="49"/>
+        <image name="error" width="90.5" height="85"/>
+        <image name="logo-popover-inverted" width="179" height="48"/>
         <image name="settings-icon" width="43" height="40"/>
     </resources>
 </document>

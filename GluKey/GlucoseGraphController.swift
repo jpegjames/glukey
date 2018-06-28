@@ -20,6 +20,12 @@ class GlucoseGraphController: NSViewController {
     @IBOutlet weak var timePopup:       NSPopUpButton!
     @IBOutlet weak var updatedAtLabel:  NSTextField!
     @IBOutlet weak var popoverLogo:     NSImageView!
+    @IBOutlet weak var errorBox:        NSBox!
+    @IBOutlet weak var errorLinkBox:    NSBox!
+    @IBOutlet weak var errorBoxText:    NSTextField!
+    
+    
+    
     
     // Settings Storyboard View/Controller
     //
@@ -54,6 +60,22 @@ class GlucoseGraphController: NSViewController {
         //
         buildChart()
         setChartZoom()
+        
+        
+        // Show / hide chart and error message box
+        //
+        if Constants.errorMessage == "" {
+            errorBox.isHidden = true
+            cgmChart.isHidden = false
+        } else {
+            errorBox.isHidden = false
+            cgmChart.isHidden = true
+            
+            errorBoxText.stringValue = Constants.errorMessage
+            errorLinkBox.isHidden = !Connectivity.isConnectedToInternet
+        }
+        
+        
         
         // Animate chart after popup
         // NOTE: animation should only be called on popup, not when building chart
@@ -95,9 +117,7 @@ class GlucoseGraphController: NSViewController {
     @IBAction func appMenuHandler(_ sender: Any) {
         switch appMenuPopup.titleOfSelectedItem! {
         case "Settings…":
-            settingsWindowController = settingsStoryboard.instantiateController(withIdentifier: "Settings") as! NSWindowController
-            settingsWindowController.window?.makeKeyAndOrderFront(nil)
-            
+            openSettings()
         case "Quit":
             NSApplication.shared().terminate(sender)
         default:
@@ -105,12 +125,36 @@ class GlucoseGraphController: NSViewController {
         }
         
     }
+  
+    
+    // Open settings panel from error message
+    //
+    @IBAction func errorBoxSettingsHandler(_ sender: Any) {
+        openSettings()
+    }
+    
+    
+    // Open setup guide in browser
+    //
+    @IBAction func errorBoxSetupGuideHandler(_ sender: Any) {
+        NSWorkspace.shared().open(NSURL(string: "https://glukey.info/setup-guide")! as URL)
+    }
+    
+    
     
     
     
     // -----------------------------
     // Popover View Functions
     // -----------------------------
+    
+    // Opens settings panel
+    //
+    func openSettings() {
+        settingsWindowController = settingsStoryboard.instantiateController(withIdentifier: "Settings") as! NSWindowController
+        settingsWindowController.window?.makeKeyAndOrderFront(nil)
+    }
+    
     
     // Sets large glucose value for popover
     // NOTE: This function is nearly identical to that in AppDelegate and should probably be refactored
@@ -164,7 +208,7 @@ class GlucoseGraphController: NSViewController {
         
         // Chart settings
         //
-        cgmChart.noDataText             = "No glucose data to display"
+        cgmChart.noDataText             = "" // handled by errorMessage box
         cgmChart.gridBackgroundColor    = NSUIColor.white
         cgmChart.chartDescription?.text = "" // display nothing
         cgmChart.legend.enabled         = false

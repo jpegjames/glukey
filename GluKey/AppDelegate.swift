@@ -200,43 +200,91 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     // -----------------------------
     // Dexcom Functions
+    // NOTE: Possibly move to DexcomHelper in future
     // -----------------------------
+    
     // First get sessionID from Dexcom
+    // NOTE: `getSessionIdFromDexcom` will loop through all Dexcom base URLs to find the correct account type.
+    //        Since Alamofire is an asynchronous call, normal catching of errors will not work and therefore a failed request will
+    //        recursively call this method until all base URLs have been tried before handling the error with a `dexcomSessionError`.
     //
     func getSessionIdFromDexcom() {
-        let authenticateURL = "https://share1.dexcom.com/ShareWebServices/Services/General/LoginPublisherAccountByName"
-        let keychain = KeychainSwift()
-        
-        let parameters = [
+        let keychain    = KeychainSwift()
+        let parameters  = [
             "accountName": UserDefaults.standard.string(forKey: "dexcomUsername"),
             "password": keychain.get("GluKey Password"),
             "applicationId":"d8665ade-9673-4e27-9ff6-92db4ce13d13"
         ]
         
-        Alamofire.request(authenticateURL, method: .post, parameters: parameters, encoding: JSONEncoding.default).validate(statusCode: 200..<300).responseString{ response in
+        
+        // Remember: Alamofire JSON requests are asynchronous and getSessionIdFromDexcom will not "know" the result of the request
+        //
+        Alamofire.request(DexcomHelper.authenticateURL(), method: .post, parameters: parameters, encoding: JSONEncoding.default).validate(statusCode: 200..<300).responseString{ response in
             switch response.result {
             case .success:
-                Constants.sessionID = (response.value!).replacingOccurrences(of: "\"", with: "")
-                self.getGlucoseDataFromDexcom()
-            default:
-                print("Could not get session ID")
+                // Set session ID
+                DexcomHelper.sessionID = (response.value!).replacingOccurrences(of: "\"", with: "")
                 
-                // Update menu bar as it may be required to set the data as "old"
-                self.updateMenuBarValue()
+                // Clearing error message, hides error message box
+                Constants.errorMessage = ""
+                
+                // Run next Dexcom step
+                self.getGlucoseDataFromDexcom()
+                
+            default:
+                // if fails to connect to Dexcom with valid internet connection, try next locale URL(s) before error handling
+                // NOTE: If dexcom servers go down but internet connection is still active,
+                //       this will not reset until the app is restarted or settings are saved (which resets the timers and account type)
+                if Connectivity.isConnectedToInternet && DexcomHelper.accountIndex < DexcomHelper.maxAccountIndex {
+                    DexcomHelper.accountIndex += 1
+                    self.getSessionIdFromDexcom()
+                } else {
+                    self.dexcomSessionError()
+                }
             }
         }
-        
     }
+
+    
+    // Handle Dexcom session error, including setting error message
+    //
+    func dexcomSessionError() {
+        print("Could not get session ID")
+        
+        // if valid internet connection, assume session ID failed due to wrong password
+        //
+        if Connectivity.isConnectedToInternet {
+            print("Connected to internet")
+            
+            // Setting error message will hide chart when popover triggered
+            Constants.errorMessage = "Could not login. Please check your username/password."
+            
+            // Stop loop timer to prevent Glukey to continue to attempt to login,
+            // causing the account to be temporarily locked out by Dexcom for too many failed attempts
+            self.timer.invalidate()
+            
+            // Clear old data
+            Constants.glucoseData = [[String: Any]]()
+            
+            
+        } else if !GlucoseHelper.validGuloseReading() {
+            // Only show network error message if there is no valid glucose reading to display
+            Constants.errorMessage = "Your computer does not appear to be connected to the internet."
+        }
+        
+        
+        // Update menu bar as it may be required to set the data as "old"
+        self.updateMenuBarValue()
+    }
+    
     
     // Second get glucose data from Dexcom
     //
     func getGlucoseDataFromDexcom() {
-        let maxCount:            Int     = 288 // 24 * 60 / 5
-        let minutes:             Int     = 1440 // 24 * 60
         var newGlucoseData:      Array   = [[String: Any]]() // serves as temp cache
         var nextGlucoseInterval: Double  = Double.init()
         
-        Alamofire.request("https://share1.dexcom.com/ShareWebServices/Services/Publisher/ReadPublisherLatestGlucoseValues?sessionID=\(Constants.sessionID)&minutes=\(minutes)&maxCount=\(maxCount)", method: .post).validate(statusCode: 200..<300).responseJSON { response in
+        Alamofire.request(DexcomHelper.glucoseValuesURL(), method: .post).validate(statusCode: 200..<300).responseJSON { response in
             // Response values
             // DT (date)
             // ST (date)
@@ -258,46 +306,65 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                     newGlucoseData.append(["Value": numericValue, "Trend": value["Trend"] as! Int, "DT": dateInt, "Date": NSDate(timeIntervalSince1970: dateInt)])
                 }
                 
-                // if valid, then replace temp data with "global" glucose data
-                //
-                Constants.glucoseData = newGlucoseData
                 
-                // Set minimum nextGlucoseInterval valuefor Timer loop (to prevent excessive API calls)
+                // Check to make sure request returned Glucose data (or else the block of code will fail) and show error if no data
+                // NOTE: This block of code within the conditional could possibly be refactored or moved into another method for simplicity
                 //
-                let lastDate:Date = GlucoseHelper.currentGulcoseReading()["Date"] as! Date
+                if newGlucoseData.isEmpty == false {
+                
+                    // if valid, then replace temp data with "global" glucose data
+                    //
+                    Constants.glucoseData = newGlucoseData
+                
+                    // Set minimum nextGlucoseInterval valuefor Timer loop (to prevent excessive API calls)
+                    //
+                    let lastDate:Date = GlucoseHelper.currentGulcoseReading()["Date"] as! Date
                 
                 
-                // https://oleb.net/blog/2015/09/swift-ranges-and-intervals/
-                //
-                switch lastDate.timeIntervalSinceNow {
-                case -360.0 ... -300.0 : nextGlucoseInterval = 10 // try again in 10 seconds if less than 1 minute "past due"
-                case -420.0 ... -360.0 : nextGlucoseInterval = 20 // try again in 20 seconds if between 1 and 2 minutes "past due"
-                case -600.0 ... -420.0 : nextGlucoseInterval = 30 // try again in 30 seconds if between 2 and 5 minutes "past due"
-                case Double(Int.min) ... -600.0 :
-                    // Display old data notification (if allowed)
-                    NotificationHelper.oldData(notification: self.notification)
+                    // https://oleb.net/blog/2015/09/swift-ranges-and-intervals/
+                    //
+                    switch lastDate.timeIntervalSinceNow {
+                    case -360.0 ... -300.0 : nextGlucoseInterval = 10 // try again in 10 seconds if less than 1 minute "past due"
+                    case -420.0 ... -360.0 : nextGlucoseInterval = 20 // try again in 20 seconds if between 1 and 2 minutes "past due"
+                    case -600.0 ... -420.0 : nextGlucoseInterval = 30 // try again in 30 seconds if between 2 and 5 minutes "past due"
+                    case Double(Int.min) ... -600.0 :
+                        // Display old data notification (if allowed)
+                        NotificationHelper.oldData(notification: self.notification)
+                        
+                        // Set next interval
+                        nextGlucoseInterval = 60
+                    default:
+                        // Check for high/low notifications here
+                        NotificationHelper.checkLowHigh(notification: self.notification)
+                        
+                        // Set next interval
+                        nextGlucoseInterval = 310.0 + (GlucoseHelper.currentGulcoseReading()["DT"] as! Double) -  Date.init().timeIntervalSince1970
+                    }
+                
+                
+                    // Set nextGlucoseInterval for Timer loop
+                    //
+                    self.timerInterval = nextGlucoseInterval
+                    print( nextGlucoseInterval )
+                    self.resetGlucoseTimer()
                     
-                    // Set next interval
-                    nextGlucoseInterval = 60
-                default:
-                    // Check for high/low notifications here
-                    NotificationHelper.checkLowHigh(notification: self.notification)
                     
-                    // Set next interval
-                    nextGlucoseInterval = 310.0 + (GlucoseHelper.currentGulcoseReading()["DT"] as! Double) -  Date.init().timeIntervalSince1970
+                    // Clearing error message, hides error message box
+                    Constants.errorMessage = ""
+                
+                } else {
+                    print("No recent data")
+                    
+                    // Setting error message will hide chart when popover triggered
+                    Constants.errorMessage = "Glukey connected successfully to Dexcom, but there is no data to display."
                 }
-                
-                
-                // Set nextGlucoseInterval for Timer loop
-                //
-                self.timerInterval = nextGlucoseInterval
-                print( nextGlucoseInterval )
-                self.resetGlucoseTimer()
-                
-                
                 
             default:
                 print("No Valid Connection")
+                // Setting error message will hide chart when popover triggered
+                // NOTE: I'm not sure if this would be different than not getting the session ID.
+                //       I'm not sure if this default conditional will ever be reached.
+                Constants.errorMessage = "Glukey could not connect to Dexcom."
             }
             
             // Update menu bar regardless if data was downloaded

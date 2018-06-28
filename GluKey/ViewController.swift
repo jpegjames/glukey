@@ -30,6 +30,7 @@ class ViewController: NSViewController {
         let keychain = KeychainSwift()
         keychain.set(dexcomPassword.stringValue, forKey: "GluKey Password")
         UserDefaults.standard.set(dexcomUsername.stringValue, forKey: "dexcomUsername")
+        DexcomHelper.resetAccountType()
         
         
         // Chart Settings

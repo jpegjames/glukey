@@ -16,12 +16,9 @@ class GlucoseHelper {
     // Return current glucose value
     //
     static func currentGulcoseReading() -> Dictionary<String, Any> {
-        if Constants.glucoseData.isEmpty == false {
-            return Constants.glucoseData[0]
-        } else {
-            // This is incorrect
-            return Constants.glucoseData[0]
-        }
+        // NOTE This method will fail if glucoseData is empty, however it should not be called by the controller if it is empty
+        //
+        return Constants.glucoseData[0]
     }
     
     
@@ -37,7 +34,6 @@ class GlucoseHelper {
             case .orderedDescending    :   return true    // value less than 20 minutes
             case .orderedSame          :   return true
             }
-            
             
         } else {
             return false
