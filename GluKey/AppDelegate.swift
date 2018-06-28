@@ -225,6 +225,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 // Set session ID
                 DexcomHelper.sessionID = (response.value!).replacingOccurrences(of: "\"", with: "")
                 
+                // Confirming account will prevent a connection failure from cylcing through other accountIndex even though it previously worked
+                // This is important if Dexcom servers temporarily stop responding but internet connection is still active.
+                DexcomHelper.accountConfirmed = true
+                
                 // Clearing error message, hides error message box
                 Constants.errorMessage = ""
                 
@@ -232,10 +236,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 self.getGlucoseDataFromDexcom()
                 
             default:
-                // if fails to connect to Dexcom with valid internet connection, try next locale URL(s) before error handling
-                // NOTE: If dexcom servers go down but internet connection is still active,
-                //       this will not reset until the app is restarted or settings are saved (which resets the timers and account type)
-                if Connectivity.isConnectedToInternet && DexcomHelper.accountIndex < DexcomHelper.maxAccountIndex {
+                // if fails to connect to Dexcom with valid internet connection and account type is not confirmed,
+                // then try next locale URL(s) before error handling
+                if Connectivity.isConnectedToInternet && !DexcomHelper.accountConfirmed && DexcomHelper.accountIndex < DexcomHelper.maxAccountIndex {
                     DexcomHelper.accountIndex += 1
                     self.getSessionIdFromDexcom()
                 } else {

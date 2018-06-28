@@ -11,13 +11,14 @@ import Foundation
 class DexcomHelper {
     // Default Dexcom variables
     //
-    static let baseURLs:      Array = [
+    static let baseURLs:            Array   = [
         "https://share1.dexcom.com/",
         "https://shareous1.dexcom.com/"
     ]
-    static let maxAccountIndex: Int = baseURLs.count - 1    // max index for base URLs (2 URLs -> max index = 1)
-    static var accountIndex:    Int = 0                     // accountIndex is increased by getSessionIdFromDexcom
-    static var sessionID:    String = ""                    // stores sessionID for authenication from Dexcom
+    static let maxAccountIndex:     Int     = baseURLs.count - 1    // max index for base URLs (2 URLs -> max index = 1)
+    static var accountConfirmed:    Bool    = false                 // prevents accountIndex from changing due to connection failure
+    static var accountIndex:        Int     = 0                     // accountIndex is increased by getSessionIdFromDexcom
+    static var sessionID:           String  = ""                    // stores sessionID for authenication from Dexcom
     
     
     // Returns Dexcom authenication URL for correct account type
@@ -54,5 +55,6 @@ class DexcomHelper {
     static func resetAccountType() {
         print("Resetting Dexcom base url index")
         accountIndex = 0
+        accountConfirmed = false
     }
 }
