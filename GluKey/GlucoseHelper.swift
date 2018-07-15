@@ -26,12 +26,12 @@ class GlucoseHelper {
     //
     static func validGuloseReading() -> Bool {
         if Constants.glucoseData.isEmpty == false {
-            let twentyMinutesAgo = NSDate(timeIntervalSinceNow: -600) // 10 minutes
+            let validDatetimeRange = NSDate(timeIntervalSinceNow: -660) // 11 minutes
             let currentReadingDate = currentGulcoseReading()["Date"] as! Date
             
-            switch currentReadingDate.compare(twentyMinutesAgo as Date) {
-            case .orderedAscending     :   return false   // value older than 20 minutes
-            case .orderedDescending    :   return true    // value less than 20 minutes
+            switch currentReadingDate.compare(validDatetimeRange as Date) {
+            case .orderedAscending     :   return false   // value older than Date comparison
+            case .orderedDescending    :   return true    // value less than Date comparison
             case .orderedSame          :   return true
             }
             
