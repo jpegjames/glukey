@@ -383,15 +383,35 @@ class GlucoseGraphController: NSViewController {
         
         // Set string color
         //
-        if GlucoseHelper.validGuloseReading() {
-            if UIHelper.isDarkUI() {
-                updatedAtLabel.textColor = NSUIColor.white
-            } else {
-                updatedAtLabel.textColor = NSUIColor.black
-            }
-        } else {
-            updatedAtLabel.textColor = NSUIColor.red
+        updatedAtLabel.textColor = labelColor()
+    }
+    
+    
+    // Returns color for updatedAtLabel
+    //
+    func labelColor() -> NSUIColor {
+        if !GlucoseHelper.validGuloseReading() {
+            return NSUIColor.red
         }
+        
+        if Constants.sensorExpired {
+            return NSUIColor.red
+        }
+        
+        if Constants.sensorExpired {
+            return NSUIColor.red
+        }
+        
+        if Constants.sensorOutOfRange {
+            return NSUIColor.red
+        }
+        
+        if UIHelper.isDarkUI() {
+            return NSUIColor.white
+        }
+        
+        // Default
+        return NSUIColor.black
     }
     
 }
