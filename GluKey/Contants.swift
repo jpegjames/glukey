@@ -13,10 +13,13 @@ struct Constants {
     
     // "Global" vars
     //
-    static var popover                 = NSPopover()
-    static var glucoseData:    Array   = [[String: Any]]()
-    static let statusIconBase: String  = "statusIcon-"
-    static var errorMessage:   String  = ""
+    static var popover                      = NSPopover()
+    static var glucoseData:         Array   = [[String: Any]]()
+    static let statusIconBase:      String  = "statusIcon-"
+    static var errorMessage:        String  = ""
+    static var sensorCalibration:   Bool    = false
+    static var sensorExpired:       Bool    = false
+    static var sensorOutOfRange:    Bool    = false
     
     
     // Notification vars

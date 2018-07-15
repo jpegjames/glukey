@@ -297,16 +297,60 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             
             switch response.result {
             case .success:
-                for case let value as NSDictionary in response.result.value! as! NSArray {
+                
+                let responseValues : NSArray = response.result.value! as! NSArray
+                let lastValue : NSDictionary = responseValues[0] as! NSDictionary
+                
+                // Dexcom G6 sensor/transmittor errors:
+                // returns `1.0` when sensor is expired
+                // returns `5.0` when sensor is in startup calibration
+                // returns `10.0` when transmitter is not connected to app/phone
+                // trend for all is 8
+                //
+                // TODO Use these values to provide alerts and description in popup
+                // (could also estimate time remaining for calibration to finish)
+                //
+                
+                switch lastValue["Value"] as! Double {
+                case 1.0:
+                    print("Sensor expired")
+                    Constants.sensorExpired     = true
+                    Constants.sensorCalibration = false
+                    Constants.sensorOutOfRange  = false
+                case 5.0:
+                    print("Sensor is in startup mode")
+                    Constants.sensorExpired     = false
+                    Constants.sensorCalibration = true
+                    Constants.sensorOutOfRange  = false
+                case 10.0:
+                    // I'm not sure if this one will ever be the lastValue because
+                    // the sensor will transmit past data to the receiver when re-connected
+                    // and the app does not "share" data when nothing has been received
+                    print("Transmitter is out of range / no data")
+                    Constants.sensorExpired     = false
+                    Constants.sensorCalibration = false
+                    Constants.sensorOutOfRange  = true
+                default:
+                    Constants.sensorExpired     = false
+                    Constants.sensorCalibration = false
+                    Constants.sensorOutOfRange  = false
+                }
+                
+                
+                for case let value as NSDictionary in responseValues {
                     var numericValue: Double = (value["Value"] as! Double)
                     let dateString  : String = (value["ST"] as! String).replacingOccurrences(of: "/Date(", with: "").replacingOccurrences(of: ")/", with: "")
                     let dateInt     : Double = Double(dateString)! / 1000
                     
-                    if UserDefaults.standard.bool(forKey: "useMmol") {
-                        numericValue = numericValue / 18.0
-                    }
                     
-                    newGlucoseData.append(["Value": numericValue, "Trend": value["Trend"] as! Int, "DT": dateInt, "Date": NSDate(timeIntervalSince1970: dateInt)])
+                    // Skip Dexcom G6 'sensor' values noted above
+                    if numericValue > 10.0 {
+                        if UserDefaults.standard.bool(forKey: "useMmol") {
+                            numericValue = numericValue / 18.0
+                        }
+                        
+                        newGlucoseData.append(["Value": numericValue, "Trend": value["Trend"] as! Int, "DT": dateInt, "Date": NSDate(timeIntervalSince1970: dateInt)])
+                    }
                 }
                 
                 

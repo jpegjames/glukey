@@ -362,6 +362,25 @@ class GlucoseGraphController: NSViewController {
             updatedAtLabel.stringValue = "updated " + TimeHelper.timeAgoSinceDate(date: GlucoseHelper.currentGulcoseReading()["Date"] as! NSDate, numericDates: true)
         }
         
+        // Dexcom G6 specific
+        //
+        if Constants.sensorExpired {
+            // Note the sensor expired "time ago" range is based off the assumption the
+            // last value was shared to Dexcom, which should be the case unless sensor expires
+            // while out of range of phone
+            // Expiration timestamp will be 5 minutes after last reading
+            let expired_date: NSDate = (GlucoseHelper.currentGulcoseReading()["Date"] as! NSDate).addingTimeInterval(300.0)
+            updatedAtLabel.stringValue = "Sensor expired " + TimeHelper.timeAgoSinceDate(date: expired_date, numericDates: true)
+            
+        } else if Constants.sensorCalibration {
+            // Time for warmup mode could be determined by keeping up with how many sensor
+            // values are respresnting warmup mode
+            updatedAtLabel.stringValue = "Sensor in warmup mode"
+            
+        } else if Constants.sensorOutOfRange {
+            updatedAtLabel.stringValue = "Transmitter out of range of phone"
+        }
+        
         // Set string color
         //
         if GlucoseHelper.validGuloseReading() {
