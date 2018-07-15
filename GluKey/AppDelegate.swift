@@ -256,7 +256,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         // if valid internet connection, assume session ID failed due to wrong password
         //
-        if Connectivity.isConnectedToInternet {
+        if Connectivity.isConnectedToInternet && DexcomHelper.accountConfirmed == false {
             print("Connected to internet")
             
             // Setting error message will hide chart when popover triggered
@@ -270,7 +270,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             Constants.glucoseData = [[String: Any]]()
             
             
-        } else if !GlucoseHelper.validGuloseReading() {
+        } else if !Connectivity.isConnectedToInternet && !GlucoseHelper.validGuloseReading() {
             // Only show network error message if there is no valid glucose reading to display
             Constants.errorMessage = "Your computer does not appear to be connected to the internet."
         }
