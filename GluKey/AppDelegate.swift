@@ -371,10 +371,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                     // https://oleb.net/blog/2015/09/swift-ranges-and-intervals/
                     //
                     switch lastDate.timeIntervalSinceNow {
-                    case -360.0 ... -300.0 : nextGlucoseInterval = 10 // try again in 10 seconds if less than 1 minute "past due"
-                    case -420.0 ... -360.0 : nextGlucoseInterval = 20 // try again in 20 seconds if between 1 and 2 minutes "past due"
-                    case -600.0 ... -420.0 : nextGlucoseInterval = 30 // try again in 30 seconds if between 2 and 5 minutes "past due"
-                    case Double(Int.min) ... -600.0 :
+                    case -360.0 ... -300.0                   : nextGlucoseInterval = 10 // try again in 10 seconds if less than 1 minute "past due"
+                    case -420.0 ... -360.0                   : nextGlucoseInterval = 20 // try again in 20 seconds if between 1 and 2 minutes "past due"
+                    case Constants.oldDataSeconds ... -420.0 : nextGlucoseInterval = 30 // try again in 30 seconds if between 2 and 5 minutes "past due"
+                    case Double(Int.min) ... Constants.oldDataSeconds :
                         // Display old data notification (if allowed)
                         NotificationHelper.oldData(notification: self.notification)
                         

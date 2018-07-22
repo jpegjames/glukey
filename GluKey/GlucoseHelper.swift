@@ -26,7 +26,7 @@ class GlucoseHelper {
     //
     static func validGuloseReading() -> Bool {
         if Constants.glucoseData.isEmpty == false {
-            let validDatetimeRange = NSDate(timeIntervalSinceNow: -660) // 11 minutes
+            let validDatetimeRange = NSDate(timeIntervalSinceNow: Constants.oldDataSeconds)
             let currentReadingDate = currentGulcoseReading()["Date"] as! Date
             
             switch currentReadingDate.compare(validDatetimeRange as Date) {

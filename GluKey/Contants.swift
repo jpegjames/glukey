@@ -24,10 +24,11 @@ struct Constants {
     
     // Notification vars
     //
-    static var acceptedLevelNotice:     Bool = false
-    static var acceptedOldDataNotice:   Bool = false
-    static var shownLevelNotice:        Bool = false
-    static var shownOldDataNotice:      Bool = false
+    static var acceptedLevelNotice:     Bool    = false
+    static var acceptedOldDataNotice:   Bool    = false
+    static var shownLevelNotice:        Bool    = false
+    static var shownOldDataNotice:      Bool    = false
+    static let oldDataSeconds:          Double  = -660.0    // must be negative number; this also determines if current value is 'valid'
     
     
     // Default UserDefaults values
