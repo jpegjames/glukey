@@ -377,8 +377,8 @@ class GlucoseGraphController: NSViewController {
             // values are respresnting warmup mode
             updatedAtLabel.stringValue = "Sensor in warmup mode"
             
-        } else if Constants.sensorOutOfRange {
-            updatedAtLabel.stringValue = "Transmitter out of range of phone"
+        } else if Constants.sensorIssue {
+            updatedAtLabel.stringValue = "Temporary sensor issue"
         }
         
         // Set string color
@@ -402,7 +402,7 @@ class GlucoseGraphController: NSViewController {
             return NSUIColor.red
         }
         
-        if Constants.sensorOutOfRange {
+        if Constants.sensorIssue {
             return NSUIColor.red
         }
         

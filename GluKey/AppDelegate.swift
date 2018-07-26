@@ -304,7 +304,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 // Dexcom G6 sensor/transmittor errors:
                 // returns `1.0` when sensor is expired
                 // returns `5.0` when sensor is in startup calibration
-                // returns `10.0` when transmitter is not connected to app/phone
+                // returns `10.0` when sensor is reporting a "temporary issue"
                 // trend for all is 8
                 //
                 // TODO Use these values to provide alerts and description in popup
@@ -316,24 +316,22 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                     print("Sensor expired")
                     Constants.sensorExpired     = true
                     Constants.sensorCalibration = false
-                    Constants.sensorOutOfRange  = false
+                    Constants.sensorIssue       = false
                 case 5.0:
                     print("Sensor is in startup mode")
                     Constants.sensorExpired     = false
                     Constants.sensorCalibration = true
-                    Constants.sensorOutOfRange  = false
+                    Constants.sensorIssue       = false
                 case 10.0:
-                    // I'm not sure if this one will ever be the lastValue because
-                    // the sensor will transmit past data to the receiver when re-connected
-                    // and the app does not "share" data when nothing has been received
-                    print("Transmitter is out of range / no data")
+                    // This is when the app reports temporary issue and to wait (up to) 3 hours
+                    print("Temporary sensor issue")
                     Constants.sensorExpired     = false
                     Constants.sensorCalibration = false
-                    Constants.sensorOutOfRange  = true
+                    Constants.sensorIssue       = true
                 default:
                     Constants.sensorExpired     = false
                     Constants.sensorCalibration = false
-                    Constants.sensorOutOfRange  = false
+                    Constants.sensorIssue       = false
                 }
                 
                 

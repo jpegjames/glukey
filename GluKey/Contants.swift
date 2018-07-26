@@ -19,7 +19,7 @@ struct Constants {
     static var errorMessage:        String  = ""
     static var sensorCalibration:   Bool    = false
     static var sensorExpired:       Bool    = false
-    static var sensorOutOfRange:    Bool    = false
+    static var sensorIssue:         Bool    = false
     
     
     // Notification vars
