@@ -254,27 +254,34 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func dexcomSessionError() {
         print("Could not get session ID")
         
-        // if valid internet connection, assume session ID failed due to wrong password
-        //
-        if Connectivity.isConnectedToInternet && DexcomHelper.accountConfirmed == false {
+        if Connectivity.isConnectedToInternet {
             print("Connected to internet")
             
-            // Setting error message will hide chart when popover triggered
-            Constants.errorMessage = "Could not login. Please check your username/password."
+            // If valid internet connection and account credientials where not previously verified
+            // assume the username/password is incorrect. Stop timers and clear data.
+            //
+            if DexcomHelper.accountConfirmed == false {
+                // Setting error message will hide chart when popover triggered
+                Constants.errorMessage = "Could not login. Please check your username/password."
+                
+                // Stop loop timer to prevent Glukey to continue to attempt to login,
+                // causing the account to be temporarily locked out by Dexcom for too many failed attempts
+                self.timer.invalidate()
+                
+                // Clear old data
+                Constants.glucoseData = [[String: Any]]()
+            }
             
-            // Stop loop timer to prevent Glukey to continue to attempt to login,
-            // causing the account to be temporarily locked out by Dexcom for too many failed attempts
-            self.timer.invalidate()
+        } else {
+            print("Not connected to internet")
             
-            // Clear old data
-            Constants.glucoseData = [[String: Any]]()
-            
-            
-        } else if !Connectivity.isConnectedToInternet && !GlucoseHelper.validGuloseReading() {
-            // Only show network error message if there is no valid glucose reading to display
-            Constants.errorMessage = "Your computer does not appear to be connected to the internet."
+            // If connected not connected to internet, show message only if there is no data to graph.
+            // `updateMenuBarValue` will hide current value if data is old.
+            //
+            if Constants.glucoseData.isEmpty {
+                Constants.errorMessage = "Your computer does not appear to be connected to the internet."
+            }
         }
-        
         
         // Update menu bar as it may be required to set the data as "old"
         self.updateMenuBarValue()
