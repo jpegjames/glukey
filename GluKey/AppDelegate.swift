@@ -305,8 +305,17 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             switch response.result {
             case .success:
                 
+                // set responseValues from Dexcom
                 let responseValues : NSArray = response.result.value! as! NSArray
-                let lastValue : NSDictionary = responseValues[0] as! NSDictionary
+     
+                // set default `lastValue`
+                var lastValue : NSDictionary = ["Value":-1.0]
+                
+                // set lastValue to actual data if any data is returned from server
+                if responseValues.count != 0 {
+                    lastValue = responseValues[0] as! NSDictionary
+                }
+                
                 
                 // Dexcom G6 sensor/transmittor errors:
                 // returns `1.0` when sensor is expired
@@ -319,6 +328,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 //
                 
                 switch lastValue["Value"] as! Double {
+                case -1.0:
+                    print("No data returned within range")
+                    Constants.sensorExpired     = false
+                    Constants.sensorCalibration = false
+                    Constants.sensorIssue       = false
+                    // possibly set Constant to store flag that no data was returned within range
                 case 1.0:
                     print("Sensor expired")
                     Constants.sensorExpired     = true
