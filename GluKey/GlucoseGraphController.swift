@@ -137,7 +137,7 @@ class GlucoseGraphController: NSViewController {
     // Open setup guide in browser
     //
     @IBAction func errorBoxSetupGuideHandler(_ sender: Any) {
-        NSWorkspace.shared().open(NSURL(string: "https://glukey.info/setup-guide")! as URL)
+        NSWorkspace.shared().open(NSURL(string: "https://glukey.com/setup-guide")! as URL)
     }
     
     
