@@ -152,6 +152,7 @@ class GlucoseGraphController: NSViewController {
     //
     func openSettings() {
         settingsWindowController = settingsStoryboard.instantiateController(withIdentifier: "Settings") as! NSWindowController
+        NSApp.activate(ignoringOtherApps: true)
         settingsWindowController.window?.makeKeyAndOrderFront(nil)
     }
     
