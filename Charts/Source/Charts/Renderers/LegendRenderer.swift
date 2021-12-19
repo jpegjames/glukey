@@ -12,17 +12,13 @@
 import Foundation
 import CoreGraphics
 
-#if !os(OSX)
-    import UIKit
-#endif
-
 @objc(ChartLegendRenderer)
 open class LegendRenderer: Renderer
 {
     /// the legend object this renderer renders
-    open var legend: Legend?
+    @objc open var legend: Legend?
 
-    public init(viewPortHandler: ViewPortHandler?, legend: Legend?)
+    @objc public init(viewPortHandler: ViewPortHandler, legend: Legend?)
     {
         super.init(viewPortHandler: viewPortHandler)
         
@@ -30,12 +26,9 @@ open class LegendRenderer: Renderer
     }
 
     /// Prepares the legend and calculates all needed forms, labels and colors.
-    open func computeLegend(data: ChartData)
+    @objc open func computeLegend(data: ChartData)
     {
-        guard
-            let legend = legend,
-            let viewPortHandler = self.viewPortHandler
-            else { return }
+        guard let legend = legend else { return }
         
         if !legend.isLegendCustom
         {
@@ -46,7 +39,7 @@ open class LegendRenderer: Renderer
             {
                 guard let dataSet = data.getDataSetByIndex(i) else { continue }
                 
-                var clrs: [NSUIColor] = dataSet.colors
+                let clrs: [NSUIColor] = dataSet.colors
                 let entryCount = dataSet.entryCount
                 
                 // if we have a barchart with stacked bars
@@ -54,13 +47,25 @@ open class LegendRenderer: Renderer
                     (dataSet as! IBarChartDataSet).isStacked
                 {
                     let bds = dataSet as! IBarChartDataSet
-                    var sLabels = bds.stackLabels
-                    
-                    for j in 0..<min(clrs.count, bds.stackSize)
+                    let sLabels = bds.stackLabels
+                    let minEntries = min(clrs.count, bds.stackSize)
+
+                    for j in 0..<minEntries
                     {
+                        let label: String?
+                        if (sLabels.count > 0)
+                        {
+                            let labelIndex = j % minEntries
+                            label = sLabels.indices.contains(labelIndex) ? sLabels[labelIndex] : nil
+                        }
+                        else
+                        {
+                            label = nil
+                        }
+
                         entries.append(
                             LegendEntry(
-                                label: sLabels[j % sLabels.count],
+                                label: label,
                                 form: dataSet.form,
                                 formSize: dataSet.formSize,
                                 formLineWidth: dataSet.formLineWidth,
@@ -192,12 +197,9 @@ open class LegendRenderer: Renderer
         legend.calculateDimensions(labelFont: legend.font, viewPortHandler: viewPortHandler)
     }
     
-    open func renderLegend(context: CGContext)
+    @objc open func renderLegend(context: CGContext)
     {
-        guard
-            let legend = legend,
-            let viewPortHandler = self.viewPortHandler
-            else { return }
+        guard let legend = legend else { return }
         
         if !legend.enabled
         {
@@ -209,7 +211,7 @@ open class LegendRenderer: Renderer
         let labelLineHeight = labelFont.lineHeight
         let formYOffset = labelLineHeight / 2.0
 
-        var entries = legend.entries
+        let entries = legend.entries
         
         let defaultFormSize = legend.formSize
         let formToTextSpace = legend.formToTextSpace
@@ -297,9 +299,9 @@ open class LegendRenderer: Renderer
         {
         case .horizontal:
             
-            var calculatedLineSizes = legend.calculatedLineSizes
-            var calculatedLabelSizes = legend.calculatedLabelSizes
-            var calculatedLabelBreakPoints = legend.calculatedLabelBreakPoints
+            let calculatedLineSizes = legend.calculatedLineSizes
+            let calculatedLabelSizes = legend.calculatedLabelSizes
+            let calculatedLabelBreakPoints = legend.calculatedLabelBreakPoints
             
             var posX: CGFloat = originPosX
             var posY: CGFloat
@@ -468,7 +470,7 @@ open class LegendRenderer: Renderer
                     
                     if direction == .rightToLeft
                     {
-                        posX -= (e.label as NSString!).size(attributes: [NSFontAttributeName: labelFont]).width
+                        posX -= (e.label! as NSString).size(withAttributes: [.font: labelFont]).width
                     }
                     
                     if !wasStacked
@@ -494,10 +496,10 @@ open class LegendRenderer: Renderer
         }
     }
 
-    fileprivate var _formLineSegmentsBuffer = [CGPoint](repeating: CGPoint(), count: 2)
+    private var _formLineSegmentsBuffer = [CGPoint](repeating: CGPoint(), count: 2)
     
     /// Draws the Legend-form at the given position with the color at the given index.
-    open func drawForm(
+    @objc open func drawForm(
         context: CGContext,
         x: CGFloat,
         y: CGFloat,
@@ -569,8 +571,8 @@ open class LegendRenderer: Renderer
     }
 
     /// Draws the provided label at the given position.
-    open func drawLabel(context: CGContext, x: CGFloat, y: CGFloat, label: String, font: NSUIFont, textColor: NSUIColor)
+    @objc open func drawLabel(context: CGContext, x: CGFloat, y: CGFloat, label: String, font: NSUIFont, textColor: NSUIColor)
     {
-        ChartUtils.drawText(context: context, text: label, point: CGPoint(x: x, y: y), align: .left, attributes: [NSFontAttributeName: font, NSForegroundColorAttributeName: textColor])
+        ChartUtils.drawText(context: context, text: label, point: CGPoint(x: x, y: y), align: .left, attributes: [NSAttributedString.Key.font: font, NSAttributedString.Key.foregroundColor: textColor])
     }
 }
