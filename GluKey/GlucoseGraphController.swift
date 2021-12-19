@@ -119,7 +119,7 @@ class GlucoseGraphController: NSViewController {
         case "Settings…":
             openSettings()
         case "Quit":
-            NSApplication.shared().terminate(sender)
+            NSApplication.shared.terminate(sender)
         default:
             print("unexpected case")
         }
@@ -137,7 +137,7 @@ class GlucoseGraphController: NSViewController {
     // Open setup guide in browser
     //
     @IBAction func errorBoxSetupGuideHandler(_ sender: Any) {
-        NSWorkspace.shared().open(NSURL(string: "https://glukey.com/setup-guide")! as URL)
+        NSWorkspace.shared.open(NSURL(string: "https://glukey.com/setup-guide")! as URL)
     }
     
     
@@ -151,7 +151,7 @@ class GlucoseGraphController: NSViewController {
     // Opens settings panel
     //
     func openSettings() {
-        settingsWindowController = settingsStoryboard.instantiateController(withIdentifier: "Settings") as! NSWindowController
+        settingsWindowController = (settingsStoryboard.instantiateController(withIdentifier: "Settings") as! NSWindowController)
         NSApp.activate(ignoringOtherApps: true)
         settingsWindowController.window?.makeKeyAndOrderFront(nil)
     }
@@ -290,8 +290,8 @@ class GlucoseGraphController: NSViewController {
         
         
         // Create chart data sets from array
-        let baseDataSet  = LineChartDataSet(values: baseDataArray, label: "")
-        let cgmDataSet   = LineChartDataSet(values: cgmDataArray, label: "Glucose")
+        let baseDataSet  = LineChartDataSet(entries: baseDataArray, label: "")
+        let cgmDataSet   = LineChartDataSet(entries: cgmDataArray, label: "Glucose")
         
         
         // Data sets settings
@@ -320,7 +320,7 @@ class GlucoseGraphController: NSViewController {
         
         
         // Apply data sets to chart (if any)
-        if cgmDataSet.entryCount > 0 {
+        if cgmDataSet.count > 0 {
             let chartData = LineChartData()
             chartData.addDataSet(cgmDataSet)
             chartData.addDataSet(baseDataSet)

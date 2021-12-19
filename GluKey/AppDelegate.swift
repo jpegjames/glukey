@@ -14,7 +14,7 @@ import Alamofire
 class AppDelegate: NSObject, NSApplicationDelegate {
     // Initialize vars
     let notification            = NSUserNotification()
-    let statusItem              = NSStatusBar.system().statusItem(withLength: NSVariableStatusItemLength)
+    let statusItem              = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
     let settingsStoryboard      = NSStoryboard.init(name: "Main", bundle: nil)
     var settingsWindowController: NSWindowController!
     var timer:Timer             = Timer.init()
@@ -25,7 +25,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        NSWorkspace.shared().notificationCenter.addObserver(self, selector: #selector(AppDelegate.wakeUpListener), name: NSNotification.Name.NSWorkspaceDidWake, object: nil)
+        NSWorkspace.shared.notificationCenter.addObserver(self, selector: #selector(AppDelegate.wakeUpListener), name: NSWorkspace.didWakeNotification, object: nil)
         
         // -----------------------------
         // Register UserDefaults
@@ -43,7 +43,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         //
         let keychain = KeychainSwift()
         if UserDefaults.standard.string(forKey: "dexcomUsername") == "" || keychain.get("GluKey Password") == nil {
-            settingsWindowController = settingsStoryboard.instantiateController(withIdentifier: "Settings") as! NSWindowController
+            settingsWindowController = (settingsStoryboard.instantiateController(withIdentifier: "Settings") as! NSWindowController)
             settingsWindowController.window?.makeKeyAndOrderFront(nil)
         }
         
@@ -101,7 +101,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     
-    func wakeUpListener() {
+    @objc func wakeUpListener() {
         print("Wake Up Listening")
         updateMenuBarValue()
         loadGlucoseData()
@@ -130,7 +130,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         timer = Timer.init(fire: date, interval: 60, repeats: true) { (_) in
             self.loadGlucoseData()
         }
-        RunLoop.main.add(timer, forMode: RunLoopMode.commonModes)
+        RunLoop.main.add(timer, forMode: RunLoop.Mode.common)
     }
     
     func resetGlucoseTimer() {
@@ -144,7 +144,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     // Popover Functions
     // -----------------------------
     //
-    func togglePopover(_ sender: AnyObject?) {
+    @objc func togglePopover(_ sender: AnyObject?) {
         if Constants.popover.isShown {
             closePopover(sender)
         } else {
@@ -219,7 +219,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         // Remember: Alamofire JSON requests are asynchronous and getSessionIdFromDexcom will not "know" the result of the request
         //
-        Alamofire.request(DexcomHelper.authenticateURL(), method: .post, parameters: parameters, encoding: JSONEncoding.default).validate(statusCode: 200..<300).responseString{ response in
+        AF.request(DexcomHelper.authenticateURL(), method: .post, parameters: parameters as Parameters, encoding: JSONEncoding.default).validate(statusCode: 200..<300).responseString{ response in
             switch response.result {
             case .success:
                 // Set session ID
@@ -294,19 +294,19 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         var newGlucoseData:      Array   = [[String: Any]]() // serves as temp cache
         var nextGlucoseInterval: Double  = Double.init()
         
-        Alamofire.request(DexcomHelper.glucoseValuesURL(), method: .post).validate(statusCode: 200..<300).responseJSON { response in
+        AF.request(DexcomHelper.glucoseValuesURL(), method: .post).validate(statusCode: 200..<300).responseJSON { response in
             // Response values
             // DT (date)
             // ST (date)
             // WT (date)
-            // Trend (int)
+            // Trend (String)
             // Value (int/double)
             
             switch response.result {
-            case .success:
+            case .success(let value):
                 
                 // set responseValues from Dexcom
-                let responseValues : NSArray = response.result.value! as! NSArray
+                let responseValues : NSArray = value as! NSArray
      
                 // set default `lastValue`
                 var lastValue : NSDictionary = ["Value":-1.0]
@@ -359,9 +359,24 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 
                 for case let value as NSDictionary in responseValues {
                     var numericValue: Double = (value["Value"] as! Double)
-                    let dateString  : String = (value["ST"] as! String).replacingOccurrences(of: "/Date(", with: "").replacingOccurrences(of: ")/", with: "")
+                    let dateString  : String = (value["ST"] as! String).replacingOccurrences(of: "Date(", with: "").replacingOccurrences(of: ")", with: "")
                     let dateInt     : Double = Double(dateString)! / 1000
+                    let trendString : String = (value["Trend"] as! String)
                     
+                    let trendInt : Int = {
+                       switch trendString {
+                           case "DoubleUp": return 1
+                           case "SingleUp": return 2
+                           case "FortyFiveUp": return 3
+                           case "Flat": return 4
+                           case "FortyFiveDown": return 5
+                           case "SingleDown": return 6
+                           case "DoubleDown": return 7
+                           default: return 0
+                       }
+                    }()
+                    
+                    //print("numericValue [\(numericValue)] dateString [\(dateString)] dateInt [\(dateInt)] trendString[\(trendString)] trendInt[\(trendInt)]")
                     
                     // Skip Dexcom G6 'sensor' values noted above
                     if numericValue > 10.0 {
@@ -369,7 +384,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                             numericValue = numericValue / 18.0
                         }
                         
-                        newGlucoseData.append(["Value": numericValue, "Trend": value["Trend"] as! Int, "DT": dateInt, "Date": NSDate(timeIntervalSince1970: dateInt)])
+                        newGlucoseData.append(["Value": numericValue, "Trend": trendInt, "DT": dateInt, "Date": NSDate(timeIntervalSince1970: dateInt)])
                     }
                 }
                 

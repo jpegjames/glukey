@@ -52,7 +52,7 @@ class ViewController: NSViewController {
         
         // Reset timer and reload data in case settings affect graph
         //
-        let appDelegate = NSApplication.shared().delegate as! AppDelegate
+        let appDelegate = NSApplication.shared.delegate as! AppDelegate
         appDelegate.timerInterval = 1
         appDelegate.resetGlucoseTimer()
         
@@ -126,9 +126,9 @@ class ViewController: NSViewController {
         
         // Notifications
         //
-        notifyHigh.state    = UserDefaults.standard.integer(forKey: "notifyHigh")
-        notifyLow.state     = UserDefaults.standard.integer(forKey: "notifyLow")
-        notifyOld.state     = UserDefaults.standard.integer(forKey: "notifyOld")
+        notifyHigh.state = (UserDefaults.standard.integer(forKey: "notifyHigh") != 0) ? .on : .off
+        notifyLow.state = (UserDefaults.standard.integer(forKey: "notifyLow") != 0) ? .on : .off
+        notifyOld.state  = (UserDefaults.standard.integer(forKey: "notifyOld") != 0) ? .on : .off
         
       
     }

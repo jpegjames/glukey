@@ -134,8 +134,8 @@ open class KeychainSwift {
   open func set(_ value: Bool, forKey key: String,
     withAccess access: KeychainSwiftAccessOptions? = nil) -> Bool {
   
-    let bytes: [UInt8] = value ? [1] : [0]
-    let data = Data(bytes: bytes)
+   // let bytes: [UInt8] = value ? [1] : [0]
+    let data = Data([0x1f, 0x8b, 0x08, 0x00])
 
     return set(data, forKey: key, withAccess: access)
   }
@@ -173,10 +173,10 @@ open class KeychainSwift {
     let prefixedKey = keyWithPrefix(key)
     
     var query: [String: Any] = [
-      KeychainSwiftConstants.klass       : kSecClassGenericPassword,
-      KeychainSwiftConstants.attrAccount : prefixedKey,
-      KeychainSwiftConstants.returnData  : kCFBooleanTrue,
-      KeychainSwiftConstants.matchLimit  : kSecMatchLimitOne
+        KeychainSwiftConstants.klass       : kSecClassGenericPassword,
+        KeychainSwiftConstants.attrAccount : prefixedKey,
+        KeychainSwiftConstants.returnData  : kCFBooleanTrue as Any,
+        KeychainSwiftConstants.matchLimit  : kSecMatchLimitOne
     ]
     
     query = addAccessGroupWhenPresent(query)

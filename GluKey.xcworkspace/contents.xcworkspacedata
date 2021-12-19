@@ -2,9 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:Alamofire.xcodeproj">
+      location = "group:GluKey.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:Example/iOS Example.xcodeproj">
+      location = "group:Pods/Pods.xcodeproj">
    </FileRef>
 </Workspace>

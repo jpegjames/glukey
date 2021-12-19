@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14113" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="19529" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14113"/>
-        <capability name="box content view" minToolsVersion="7.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="19529"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -69,7 +68,7 @@
                 <box fixedFrame="YES" boxType="custom" cornerRadius="4" title="Box" translatesAutoresizingMaskIntoConstraints="NO" id="izn-2y-Hbj">
                     <rect key="frame" x="-28" y="0.0" width="538" height="42"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <view key="contentView" ambiguous="YES" id="664-tp-7D5">
+                    <view key="contentView" id="664-tp-7D5">
                         <rect key="frame" x="1" y="1" width="536" height="40"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -88,7 +87,7 @@
                                 <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageAlignment="left" imageScaling="proportionallyDown" image="logo-popover-inverted" id="kfa-N9-3Td"/>
                             </imageView>
                             <popUpButton fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4Sa-Bd-v0p">
-                                <rect key="frame" x="444" y="-1" width="65" height="42"/>
+                                <rect key="frame" x="444" y="-1" width="64" height="42"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <popUpButtonCell key="cell" type="radio" bezelStyle="regularSquare" imagePosition="left" lineBreakMode="truncatingTail" inset="2" pullsDown="YES" arrowPosition="noArrow" autoenablesItems="NO" id="33q-cc-cP6">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -112,7 +111,6 @@
                         </subviews>
                     </view>
                     <color key="fillColor" red="0.22362775259067358" green="0.22362775259067358" blue="0.22362775259067358" alpha="0.091576804604225334" colorSpace="custom" customColorSpace="sRGB"/>
-                    <font key="titleFont" metaFont="message" size="11"/>
                 </box>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="o9q-Fp-cRQ" userLabel="glucoseUnit">
                     <rect key="frame" x="149" y="242" width="75" height="19"/>
@@ -131,7 +129,7 @@
                 <box focusRingType="none" fixedFrame="YES" boxType="custom" borderWidth="0.0" cornerRadius="4" title="Box" translatesAutoresizingMaskIntoConstraints="NO" id="npH-6l-m5P" userLabel="error box">
                     <rect key="frame" x="14" y="73" width="453" height="154"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <view key="contentView" ambiguous="YES" id="r1k-Aw-AZh">
+                    <view key="contentView" id="r1k-Aw-AZh">
                         <rect key="frame" x="0.0" y="0.0" width="453" height="154"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -152,7 +150,7 @@
                             <box focusRingType="none" fixedFrame="YES" boxType="custom" borderWidth="0.0" cornerRadius="4" title="Box" translatesAutoresizingMaskIntoConstraints="NO" id="Gpc-9O-D7D" userLabel="Links box">
                                 <rect key="frame" x="166" y="32" width="195" height="28"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <view key="contentView" ambiguous="YES" id="S5G-da-19C">
+                                <view key="contentView" id="S5G-da-19C">
                                     <rect key="frame" x="0.0" y="0.0" width="195" height="28"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
@@ -212,7 +210,6 @@
                         </subviews>
                     </view>
                     <color key="fillColor" white="1" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <font key="titleFont" metaFont="message" size="11"/>
                 </box>
             </subviews>
             <point key="canvasLocation" x="139" y="187.5"/>
