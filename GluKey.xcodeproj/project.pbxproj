@@ -358,7 +358,6 @@
 				TargetAttributes = {
 					6762AE101F1EA7B2003106D5 = {
 						CreatedOnToolsVersion = 8.3.3;
-						DevelopmentTeam = 4C3KJ4246H;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Sandbox = {
@@ -696,7 +695,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 20211218;
-				DEVELOPMENT_TEAM = 4C3KJ4246H;
+				DEVELOPMENT_TEAM = DBDL345C2A;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = GluKey/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -719,7 +718,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 20211218;
-				DEVELOPMENT_TEAM = 4C3KJ4246H;
+				DEVELOPMENT_TEAM = DBDL345C2A;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = GluKey/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
